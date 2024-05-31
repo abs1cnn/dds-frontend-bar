@@ -3,9 +3,9 @@ function Footer() {
   return (
     <footer className="text-center">
     <small>
-      <span>© Pymes 2024</span>
+      <span>© Desarrollo de Software</span>
       <span className="m-4">-</span>
-      <a href="tel:113"> <span className="fa fa-phone"></span> 0810-888-1234 </a>
+      <a href="tel:113"> <span className="fa fa-phone"></span> 0810-000-000 </a>
       <span className="m-4">-</span>
       Seguinos en
       <a
