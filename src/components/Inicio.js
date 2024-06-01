@@ -6,7 +6,7 @@ function Inicio() {
   return (
     <div className="button-container">
       <div>
-      <Link to="/EmpleadosTable">
+      <Link to="/empleados">
         <button className="big-button">Empleados</button>
       </Link>
       <Link to="/page2">

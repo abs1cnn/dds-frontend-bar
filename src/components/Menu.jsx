@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 function Menu() {
   return (
     <nav className="navbar navbar-dark bg-dark navbar-expand-md">
-      <a className="navbar-brand">
+      <a className="navbar-brand" href="/inicio">
         <i className="fa fa-industry"></i>
         &nbsp;<i>Bar Barbu</i>
       </a>
@@ -36,13 +36,13 @@ function Menu() {
             </NavLink>
           </li>
           <li className="nav-item">	
-            <NavLink className="nav-link" to="/empleados">
-              Empleados
-            </NavLink>
-          </li>
-          <li className="nav-item">	
             <NavLink className="nav-link" to="/sobre-nosotros">
               Sobre Nosotros
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/empleados">
+              Empleados
             </NavLink>
           </li>
         </ul>
