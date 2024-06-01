@@ -8,6 +8,8 @@ import { ArticulosFamilias } from "./components/ArticulosFamilias";
 import { Menu } from "./components/Menu";
 import EmpleadosTable from "./components/EmpleadosTable"; // Importa el nuevo componente
 import PedidosTable from "./components/PedidosTable"; // Importa el nuevo componente
+import CartaTable from "./components/CartaTable"; // Importa el nuevo componente
+import MesasTable from "./components/MesaTable"; // Importa el nuevo componente
 
 
 
@@ -23,6 +25,8 @@ function App() {
             <Route path="/articulos" element={<Articulos />} />
             <Route path="/empleados" element={<EmpleadosTable />} /> {/* Nueva ruta */}
             <Route path="/pedidos" element={<PedidosTable />} /> {/* Nueva ruta */}
+            <Route path="/carta" element={<CartaTable />} /> {/* Nueva ruta */}
+            <Route path="/mesas" element={<MesasTable />} /> {/* Nueva ruta */}
             <Route path="*" element={<Navigate to="/inicio" replace />} />
           </Routes>
         </div>

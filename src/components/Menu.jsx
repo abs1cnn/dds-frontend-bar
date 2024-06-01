@@ -36,8 +36,8 @@ function Menu() {
             </NavLink>
           </li>
           <li className="nav-item">	
-            <NavLink className="nav-link" to="/sobre-nosotros">
-              Sobre Nosotros
+            <NavLink className="nav-link" to="/mesas">
+              Mesas
             </NavLink>
           </li>
           <li className="nav-item">
@@ -48,6 +48,11 @@ function Menu() {
           <li className="nav-item">
             <NavLink className="nav-link" to="/pedidos">
               Pedidos
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/carta">
+              Carta
             </NavLink>
           </li>
         </ul>

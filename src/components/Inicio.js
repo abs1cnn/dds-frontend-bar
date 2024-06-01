@@ -14,10 +14,10 @@ function Inicio() {
       </Link>
       </div>
       <div>
-      <Link to="/page3">
+      <Link to="/carta">
         <button className="big-button">Carta</button>
       </Link>
-      <Link to="/page4">
+      <Link to="/mesas">
         <button className="big-button">Mesas</button>
       </Link>
       </div>
