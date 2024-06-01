@@ -1,21 +1,28 @@
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Inicio.css';  // Asegúrate de crear un archivo CSS para los estilos
 
 function Inicio() {
   return (
-    <div className="mt-4 p-5 rounded" style={{ backgroundColor: "lightgray" }}>
-      <h1>Pymes 2024</h1>
-      <p>Este ejemplo está desarrollado con las siguientes tecnologías:</p>
-      <p>
-        Backend: NodeJs, Express , WebApiRest, Swagger, Sequelize, Sqlite
-        múltiples capas en Javascript.
-      </p>
-      <p>
-        Frontend: Single Page Application, HTML, CSS, Bootstrap, Javascript, NodeJs y React.
-      </p>
-      <Link to="/articulosfamilias" className="btn btn-lg btn-primary">
-          <i className="fa fa-search"> </i>  Ver Articulos Familias
+    <div className="button-container">
+      <div>
+      <Link to="/EmpleadosTable">
+        <button className="big-button">Empleados</button>
       </Link>
+      <Link to="/page2">
+        <button className="big-button">Pedidos</button>
+      </Link>
+      </div>
+      <div>
+      <Link to="/page3">
+        <button className="big-button">Carta</button>
+      </Link>
+      <Link to="/page4">
+        <button className="big-button">Mesas</button>
+      </Link>
+      </div>
     </div>
   );
 }
-export { Inicio };
+
+export {Inicio};

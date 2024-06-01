@@ -5,6 +5,7 @@ import { Inicio } from "./components/Inicio";
 import { Articulos } from "./components/articulos/Articulos";
 import { ArticulosFamilias } from "./components/ArticulosFamilias";
 import {Menu} from "./components/Menu";
+
 function App() {
   return (
     <>
