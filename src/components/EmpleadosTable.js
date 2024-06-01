@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { empleadosService } from "../services/empleados.service";
 
 const EmpleadosTable = () => {
   const [empleados, setEmpleados] = useState([]);
 
   useEffect(() => {
-    // Obtener los datos de empleados desde el backend
-    axios.get('http://localhost:3000/api/empleados')
-      .then(response => {
-        setEmpleados(response.data);
-      })
-      .catch(error => {
-        console.error('Error al obtener los empleados:', error);
-      });
+    async function BuscarArticulosFamilas() {
+      let data = await empleadosService.Buscar();
+      setEmpleados(data);
+    }
+    BuscarArticulosFamilas();
   }, []);
 
   return (
