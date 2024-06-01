@@ -9,7 +9,7 @@ function Inicio() {
       <Link to="/empleados">
         <button className="big-button">Empleados</button>
       </Link>
-      <Link to="/page2">
+      <Link to="/pedidos">
         <button className="big-button">Pedidos</button>
       </Link>
       </div>

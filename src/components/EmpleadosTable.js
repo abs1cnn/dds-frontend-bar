@@ -5,11 +5,11 @@ const EmpleadosTable = () => {
   const [empleados, setEmpleados] = useState([]);
 
   useEffect(() => {
-    async function BuscarArticulosFamilas() {
+    async function BuscarEmpleados() {
       let data = await empleadosService.Buscar();
       setEmpleados(data);
     }
-    BuscarArticulosFamilas();
+    BuscarEmpleados();
   }, []);
 
   return (

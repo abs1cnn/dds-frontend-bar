@@ -45,6 +45,11 @@ function Menu() {
               Empleados
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/pedidos">
+              Pedidos
+            </NavLink>
+          </li>
         </ul>
       </div>
     </nav>
