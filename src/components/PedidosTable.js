@@ -28,8 +28,8 @@ const PedidosTable = () => {
           {pedidos.map(pedido => (
             <tr key={pedido.IdPedido}>
               <td>{pedido.IdPedido}</td>
-              <td>{pedido.Fecha}</td>
-              <td>{pedido.Monto}</td>
+              <td>{pedido.FechaAlta}</td>
+              <td>{pedido.Precio}</td>
               <td>{pedido.IdEmpleado}</td>
             </tr>
           ))}

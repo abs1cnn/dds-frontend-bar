@@ -28,8 +28,9 @@ const MesasTable = () => {
         <tbody>
           {mesas.map(mesa => (
             <tr key={mesa.IdMesa}>
+              <td>{mesa.IdMesa}</td>
               <td>{mesa.Sector}</td>
-              <td>{mesa.Ocupada}</td>
+              <td>{mesa.Ocupada? 'Sí' : 'No'}</td>
               <td>{mesa.Capacidad}</td>
               <td>{mesa.Tipo}</td>
             </tr>
