@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { cartaService } from "../../services/carta.service";
+import { cartaService } from "../../services/cartas.service";
 
 const CartaTable = () => {
   const [cartas, setCartas] = useState([]);

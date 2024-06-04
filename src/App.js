@@ -7,9 +7,9 @@ import { Articulos } from "./components/articulos/Articulos";
 import { ArticulosFamilias } from "./components/ArticulosFamilias";
 import { Menu } from "./components/Menu";
 import {Empleados} from "./components/empleados/Empleados"; // Importa el nuevo componente
-import PedidosTable from "./components/pedidos/PedidosTable"; // Importa el nuevo componente
-import CartaTable from "./components/cartas/CartaTable"; // Importa el nuevo componente
-import MesasTable from "./components/mesas/MesaTable"; // Importa el nuevo componente
+import {Cartas} from "./components/cartas/Cartas"; // Importa el nuevo componente
+import {Pedidos} from "./components/pedidos/Pedidos"; // Importa el nuevo componente
+import {Mesas} from "./components/mesas/Mesas"; // Importa el nuevo componente
 
 
 
@@ -24,9 +24,9 @@ function App() {
             <Route path="/articulosfamilias" element={<ArticulosFamilias />} />
             <Route path="/articulos" element={<Articulos />} />
             <Route path="/empleados" element={<Empleados/>} /> {/* Nueva ruta */}
-            <Route path="/pedidos" element={<PedidosTable />} /> {/* Nueva ruta */}
-            <Route path="/carta" element={<CartaTable />} /> {/* Nueva ruta */}
-            <Route path="/mesas" element={<MesasTable />} /> {/* Nueva ruta */}
+            <Route path="/pedidos" element={<Pedidos />} /> {/* Nueva ruta */}
+            <Route path="/carta" element={<Cartas/>} /> {/* Nueva ruta */}
+            <Route path="/mesas" element={<Mesas/>} /> {/* Nueva ruta */}
             <Route path="*" element={<Navigate to="/inicio" replace />} />
           </Routes>
         </div>
