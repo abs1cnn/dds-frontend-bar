@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { empleadosService } from "../services/empleados.service";
+import { empleadosService } from "../../services/empleados.service";
 
 const EmpleadosTable = () => {
   const [empleados, setEmpleados] = useState([]);

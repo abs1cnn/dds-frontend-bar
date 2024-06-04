@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { pedidosService } from "../services/pedidos.service";
+import { pedidosService } from "../../services/pedidos.service";
 
 const PedidosTable = () => {
   const [pedidos, setPedidos] = useState([]);

@@ -6,10 +6,10 @@ import { Inicio } from "./components/Inicio";
 import { Articulos } from "./components/articulos/Articulos";
 import { ArticulosFamilias } from "./components/ArticulosFamilias";
 import { Menu } from "./components/Menu";
-import EmpleadosTable from "./components/EmpleadosTable"; // Importa el nuevo componente
-import PedidosTable from "./components/PedidosTable"; // Importa el nuevo componente
-import CartaTable from "./components/CartaTable"; // Importa el nuevo componente
-import MesasTable from "./components/MesaTable"; // Importa el nuevo componente
+import EmpleadosTable from "./components/empleados/EmpleadosTable"; // Importa el nuevo componente
+import PedidosTable from "./components/pedidos/PedidosTable"; // Importa el nuevo componente
+import CartaTable from "./components/cartas/CartaTable"; // Importa el nuevo componente
+import MesasTable from "./components/mesas/MesaTable"; // Importa el nuevo componente
 
 
 

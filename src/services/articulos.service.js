@@ -1,5 +1,6 @@
 import axios from "axios";
 const urlResource = "https://labsys.frc.utn.edu.ar/dds-express/api/articulos";
+
 async function Buscar(Nombre, Activo, Pagina) {
   const resp = await axios.get(urlResource, {
     params: { Nombre, Activo, Pagina },

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { mesaService } from "../services/mesa.service";
+import { mesaService } from "../../services/mesa.service";
 
 const MesasTable = () => {
   const [mesas, setMesa] = useState([]);
