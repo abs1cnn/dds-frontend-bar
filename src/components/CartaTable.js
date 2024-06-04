@@ -6,7 +6,7 @@ const CartaTable = () => {
 
   useEffect(() => {
     async function BuscarCartas() {
-      let data = await cartaService.Buscar();
+      let data = await cartaService.buscar();
       setCartas(data);
     }
     BuscarCartas();
