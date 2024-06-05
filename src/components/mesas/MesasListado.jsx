@@ -1,7 +1,17 @@
 import React from "react";
 import moment from "moment";
 
-export default function MesasListado({ Items, Consultar, Modificar, ActivarDesactivar, Imprimir, Pagina, RegistrosTotal, Paginas, Buscar }) {
+export default function MesasListado({
+  Items,
+  Consultar,
+  Modificar,
+  ActivarDesactivar,
+  Imprimir,
+  Pagina,
+  RegistrosTotal,
+  Paginas,
+  Buscar,
+}) {
   return (
     <div className="table-responsive">
       <table className="table table-hover table-sm table-bordered table-striped">
@@ -19,7 +29,7 @@ export default function MesasListado({ Items, Consultar, Modificar, ActivarDesac
             Items.map((Item) => (
               <tr key={Item.IdMesa}>
                 <td>{Item.Sector}</td>
-                <td>{Item.Capacidad}</td>
+                <td className="text-end">{Item.Capacidad}</td>
                 <td>{Item.Tipo}</td>
                 <td>{Item.Ocupada ? "SI" : "NO"}</td>
                 <td className="text-center text-nowrap">

@@ -1,6 +1,15 @@
 import React from "react";
 
-export default function MesasBuscar({ Sector, setSector, Capacidad, setCapacidad, Buscar, Agregar }) {
+export default function MesasBuscar({
+  Sector,
+  setSector,
+  Capacidad,
+  setCapacidad,
+  Tipo,
+  setTipo,
+  Buscar,
+  Agregar,
+}) {
   return (
     <form name="FormBusqueda">
       <div className="container-fluid">
@@ -25,22 +34,33 @@ export default function MesasBuscar({ Sector, setSector, Capacidad, setCapacidad
             <input
               type="number"
               className="form-control"
-              onChange={(e) => setCapacidad(parseInt(e.target.value))}
+              onChange={(e) => setCapacidad(e.target.value)}
               value={Capacidad}
-              min="0"
+              min="1"
+            />
+          </div>
+          <div className="col-sm-4 col-md-2">
+            <label className="col-form-label">Tipo:</label>
+          </div>
+          <div className="col-sm-8 col-md-4">
+            <input
+              type="text"
+              className="form-control"
+              onChange={(e) => setTipo(e.target.value)}
+              value={Tipo}
+              maxLength="30"
             />
           </div>
         </div>
 
         <hr />
 
-        {/* Botones */}
         <div className="row">
           <div className="col text-center botones">
             <button
               type="button"
               className="btn btn-primary"
-              onClick={() => Buscar(1)}
+              onClick={() => Buscar()}
             >
               <i className="fa fa-search"> </i> Buscar
             </button>

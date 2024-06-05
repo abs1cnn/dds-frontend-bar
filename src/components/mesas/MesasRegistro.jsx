@@ -28,7 +28,7 @@ export default function MesasRegistro({
                 value={Item?.Sector}
                 autoFocus
                 className="form-control"
-                onChange={(e) => setItem({ ...Item, Sector: e.target.value })}
+                onChange={(e) => setItem({...Item, Sector: e.target.value})}
               />
             </div>
           </div>
@@ -46,7 +46,7 @@ export default function MesasRegistro({
                 name="Capacidad"
                 value={Item?.Capacidad}
                 className="form-control"
-                onChange={(e) => setItem({ ...Item, Capacidad: e.target.value })}
+                onChange={(e) => setItem({...Item, Capacidad: e.target.value})}
               />
             </div>
           </div>
@@ -64,7 +64,7 @@ export default function MesasRegistro({
                 name="Tipo"
                 value={Item?.Tipo}
                 className="form-control"
-                onChange={(e) => setItem({ ...Item, Tipo: e.target.value })}
+                onChange={(e) => setItem({...Item, Tipo: e.target.value})}
               />
             </div>
           </div>
@@ -81,9 +81,8 @@ export default function MesasRegistro({
                 name="Ocupada"
                 className="form-control"
                 value={Item?.Ocupada}
-                onChange={(e) => setItem({ ...Item, Ocupada: e.target.value })}
+                onChange={(e) => setItem({...Item, Ocupada: e.target.value})}
               >
-                <option value={null}></option>
                 <option value={false}>NO</option>
                 <option value={true}>SI</option>
               </select>

@@ -19,6 +19,7 @@ function Mesas() {
 
   const [Sector, setSector] = useState("");
   const [Capacidad, setCapacidad] = useState(0);
+  const [Tipo, setTipo] = useState("");
 
   const [Items, setItems] = useState(null);
   const [Item, setItem] = useState(null); // usado en BuscarporId (Modificar, Consultar)
@@ -26,7 +27,6 @@ function Mesas() {
   const [Pagina, setPagina] = useState(1);
   const [Paginas, setPaginas] = useState([]);
 
-  // cargar al "montar" el componente, solo la primera vez (por la dependencia [])
   useEffect(() => {
     async function BuscarMesas() {
       let data = await mesasService.Buscar();
@@ -40,7 +40,19 @@ function Mesas() {
   async function Buscar() {
     setAccionABMC("L");
     let data = await mesasService.Buscar();
+    // Filtrar los datos según el Sector y Capacidad
+    if (Sector) {
+      data = data.filter(mesa => mesa.Sector.toLowerCase().includes(Sector.toLowerCase()));
+    }
+    if (Capacidad) {
+      data = data.filter(mesa => mesa.Capacidad === parseInt(Capacidad, 10));
+    }
+    if (Tipo) {
+      data = data.filter(mesa => mesa.Tipo.toLowerCase().includes(Tipo.toLowerCase()));
+    }
     setItems(data);
+    setRegistrosTotal(data.length);
+    setPaginas([...Array(Math.ceil(data.length / 10)).keys()].map(x => x + 1));
   }
 
   async function BuscarPorId(item, accionABMC) {
@@ -90,7 +102,6 @@ function Mesas() {
     Volver();
   }
 
-  // Volver/Cancelar desde Agregar/Modificar/Consultar
   function Volver() {
     setAccionABMC("L");
   }
@@ -106,6 +117,8 @@ function Mesas() {
         setSector={setSector}
         Capacidad={Capacidad}
         setCapacidad={setCapacidad}
+        Tipo={Tipo}
+        setTipo={setTipo}
         Buscar={Buscar}
         Agregar={Agregar}
       />
@@ -122,10 +135,12 @@ function Mesas() {
         Buscar={Buscar}
       />
 
-      <div className="alert alert-info mensajesAlert">
-        <i className="fa fa-exclamation-sign"></i>
-        No se encontraron registros...
-      </div>
+      {Items && Items.length === 0 && (
+        <div className="alert alert-info mensajesAlert">
+          <i className="fa fa-exclamation-sign"></i>
+          No se encontraron registros...
+        </div>
+      )}
 
       <MesasRegistro
         AccionABMC={AccionABMC}
