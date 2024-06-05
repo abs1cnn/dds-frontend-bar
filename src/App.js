@@ -3,8 +3,6 @@ import "./App.css";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { Footer } from "./components/Footer";
 import { Inicio } from "./components/Inicio";
-import { Articulos } from "./components/articulos/Articulos";
-import { ArticulosFamilias } from "./components/ArticulosFamilias";
 import { Menu } from "./components/Menu";
 import {Empleados} from "./components/empleados/Empleados"; // Importa el nuevo componente
 import {Cartas} from "./components/cartas/Cartas"; // Importa el nuevo componente
@@ -21,8 +19,6 @@ function App() {
         <div className="divBody">
           <Routes>
             <Route path="/inicio" element={<Inicio />} />
-            <Route path="/articulosfamilias" element={<ArticulosFamilias />} />
-            <Route path="/articulos" element={<Articulos />} />
             <Route path="/empleados" element={<Empleados/>} /> {/* Nueva ruta */}
             <Route path="/pedidos" element={<Pedidos />} /> {/* Nueva ruta */}
             <Route path="/carta" element={<Cartas/>} /> {/* Nueva ruta */}

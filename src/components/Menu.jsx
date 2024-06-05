@@ -25,16 +25,6 @@ function Menu() {
               Inicio
             </NavLink>
           </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/articulosfamilias">
-              Articulos Familias
-            </NavLink>
-          </li>
-          <li className="nav-item">	
-            <NavLink className="nav-link" to="/articulos">
-              Articulos
-            </NavLink>
-          </li>
           <li className="nav-item">	
             <NavLink className="nav-link" to="/mesas">
               Mesas
