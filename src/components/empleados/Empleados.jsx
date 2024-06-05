@@ -18,7 +18,7 @@ function Empleados() {
   const [AccionABMC, setAccionABMC] = useState("L");
 
   const [Nombre, setNombre] = useState("");
-  const [Activo, setActivo] = useState("");
+  const [Apellido, setApellido] = useState("");
 
   const [Items, setItems] = useState(null);
   const [Item, setItem] = useState(null); // usado en BuscarporId (Modificar, Consultar)
@@ -40,6 +40,12 @@ function Empleados() {
   async function Buscar() {
     setAccionABMC("L");
     let data = await empleadosService.Buscar();
+    if (Nombre) {
+      data = data.filter(empleado => empleado.Nombre.toLowerCase().includes(Nombre.toLowerCase()));
+    }
+    if (Apellido) {
+      data = data.filter(empleado => empleado.Apellido.toLowerCase().includes(Apellido.toLowerCase()));
+    }
     setItems(data);
   }
 
@@ -108,8 +114,7 @@ function Empleados() {
       <EmpleadosBuscar
         Nombre={Nombre}
         setNombre={setNombre}
-        Activo={Activo}
-        setActivo={setActivo}
+        setApellido={setApellido}
         Buscar={Buscar}
         Agregar={Agregar}
       />
