@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import moment from "moment";
 
 import { empleadosService } from "../../services/empleados.service";
-//import { empleadosFamiliasMockService as empleadosFamiliasService } from "../../services/empleadosFamilias-mock.service";
 
 import EmpleadosBuscar from "./EmpleadosBuscar";
 import EmpleadosListado from "./EmpleadosListado";

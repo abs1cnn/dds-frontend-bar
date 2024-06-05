@@ -1,13 +1,11 @@
 import axios from "axios";
 const urlResource = "http://localhost:3000/api/empleados";
 
-
 // funcion buscar, hace un fech con axios
 async function Buscar() {
   const resp = await axios.get(urlResource);
   return resp.data;
 }
-
 
 // funcion buscar, hace un fech con axios, agrefa barra inclinada e id
 async function BuscarPorId(item) {
