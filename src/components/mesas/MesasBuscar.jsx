@@ -7,6 +7,8 @@ export default function MesasBuscar({
   setCapacidad,
   Tipo,
   setTipo,
+  Ocupada,
+  setOcupada,
   Buscar,
   Agregar,
 }) {
@@ -50,6 +52,20 @@ export default function MesasBuscar({
               value={Tipo}
               maxLength="30"
             />
+          </div>
+          <div className="col-sm-4 col-md-2">
+            <label className="col-form-label">Ocupada:</label>
+          </div>
+          <div className="col-sm-8 col-md-4">
+            <select
+              className="form-control"
+              onChange={(e) => setOcupada(e.target.value)}
+              value={Ocupada}
+            >
+              <option value={""}></option>
+              <option value={false}>NO</option>
+              <option value={true}>SI</option>
+            </select>
           </div>
         </div>
 

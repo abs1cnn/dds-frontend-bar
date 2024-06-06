@@ -26,7 +26,7 @@ export default function PedidosListado({
             Items.map((Item) => (
               <tr key={Item.IdPedido}>
                 <td className="text-center">
-                  {moment(Item.FechaAlta).format("DD/MM/YYYY")}
+                  {moment(Item.FechaAlta).format("MM/DD/YYYY")}
                 </td>
                 <td className="text-center">{Item.Precio}</td>
                 <td className="text-center">{Item.IdEmpleado}</td>

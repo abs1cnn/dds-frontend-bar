@@ -19,7 +19,7 @@ export default function PedidosBuscar({
           </div>
           <div className="col-sm-8 col-md-4">
             <input
-              type="date"
+              type="text"
               className="form-control"
               onChange={(e) => setFechaAlta(e.target.value)}
               value={FechaAlta}

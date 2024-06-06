@@ -20,6 +20,7 @@ function Mesas() {
   const [Sector, setSector] = useState("");
   const [Capacidad, setCapacidad] = useState(0);
   const [Tipo, setTipo] = useState("");
+  const [Ocupada, setOcupada] = useState("");
 
   const [Items, setItems] = useState(null);
   const [Item, setItem] = useState(null); // usado en BuscarporId (Modificar, Consultar)
@@ -49,6 +50,10 @@ function Mesas() {
     }
     if (Tipo) {
       data = data.filter(mesa => mesa.Tipo.toLowerCase().includes(Tipo.toLowerCase()));
+    }
+    if (Ocupada !== "") {
+      const isOcupada = Ocupada === "true" ? true : Ocupada === "false" ? false : "";
+      data = data.filter(mesa => mesa.Ocupada === (isOcupada ? 1 : 0));
     }
     setItems(data);
     setRegistrosTotal(data.length);
@@ -119,6 +124,8 @@ function Mesas() {
         setCapacidad={setCapacidad}
         Tipo={Tipo}
         setTipo={setTipo}
+        Ocupada={Ocupada}
+        setOcupada={setOcupada}
         Buscar={Buscar}
         Agregar={Agregar}
       />

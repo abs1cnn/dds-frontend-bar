@@ -1,6 +1,15 @@
 import React from "react";
 
-export default function EmpleadosBuscar({Nombre, setNombre, Apellido, setApellido, Activo, setActivo, Buscar, Agregar}) {
+export default function EmpleadosBuscar({
+  Nombre, 
+  setNombre, 
+  Apellido, 
+  setApellido, 
+  Activo, 
+  setActivo, 
+  Buscar, 
+  Agregar
+}) {
   return (
     <form name="FormBusqueda">
       <div className="container-fluid">
