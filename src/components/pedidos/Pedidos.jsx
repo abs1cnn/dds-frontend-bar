@@ -38,21 +38,14 @@ function Pedidos() {
 
   async function Buscar() {
     setAccionABMC("L");
-    // Simular búsqueda de pedidos
-    setItems([
-      {
-        IdPedido: 1,
-        FechaAlta: "2024-06-05",
-        Precio: 25.99,
-        IdEmpleado: 1,
-      },
-      {
-        IdPedido: 2,
-        FechaAlta: "2024-06-06",
-        Precio: 19.99,
-        IdEmpleado: 2,
-      },
-    ]);
+      let data = await pedidosService.Buscar();
+      if (FechaAlta) {
+        data = data.filter(pedido => pedido.FechaAlta.toLowerCase().includes(FechaAlta.toLowerCase()));
+      }
+      if (Precio) {
+        data = data.filter(pedido => pedido.Precio === parseInt(Precio, 10));
+      }
+    setItems(data);
   }
 
   function Consultar(item) {

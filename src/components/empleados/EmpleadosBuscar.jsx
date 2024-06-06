@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function EmpleadosBuscar({Nombre, setNombre, Activo, setActivo, Buscar, Agregar}) {
+export default function EmpleadosBuscar({Nombre, setNombre, Apellido, setApellido, Activo, setActivo, Buscar, Agregar}) {
   return (
     <form name="FormBusqueda">
       <div className="container-fluid">
@@ -14,6 +14,19 @@ export default function EmpleadosBuscar({Nombre, setNombre, Activo, setActivo, B
               className="form-control"
               onChange={(e) => setNombre(e.target.value)}
               value={Nombre}
+              maxLength="55"
+              autoFocus
+            />
+          </div>
+          <div className="col-sm-4 col-md-2">
+            <label className="col-form-label">Apellido:</label>
+          </div>
+          <div className="col-sm-8 col-md-4">
+            <input
+              type="text"
+              className="form-control"
+              onChange={(e) => setApellido(e.target.value)}
+              value={Apellido}
               maxLength="55"
               autoFocus
             />

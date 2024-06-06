@@ -37,25 +37,15 @@ function Cartas() {
 
   async function Buscar() {
     setAccionABMC("L");
-    // Simular búsqueda de cartas
-    setItems([
-      {
-        IdCarta: 1,
-        Nombre: "Carta 1",
-        Descripcion: "Descripción de la carta 1",
-        Precio: 10.99,
-        Categoria: "Categoría 1",
-        Activo: true,
-      },
-      {
-        IdCarta: 2,
-        Nombre: "Carta 2",
-        Descripcion: "Descripción de la carta 2",
-        Precio: 15.99,
-        Categoria: "Categoría 2",
-        Activo: false,
-      },
-    ]);
+    setAccionABMC("L");
+    let data = await cartasService.Buscar();
+    if (Nombre) {
+      data = data.filter(carta => carta.Nombre.toLowerCase().includes(Nombre.toLowerCase()));
+    }
+    if (Categoria) {
+      data = data.filter(carta => carta.Categoria.toLowerCase().includes(Categoria.toLowerCase()));
+    }
+    setItems(data);
   }
 
   function Consultar(item) {

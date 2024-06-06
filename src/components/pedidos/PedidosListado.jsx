@@ -45,6 +45,7 @@ export default function PedidosListado({
                   >
                     <i className="fa fa-pencil"></i>
                   </button>
+                  
                 </td>
               </tr>
             ))}

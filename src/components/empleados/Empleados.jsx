@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import moment from "moment";
 
 import { empleadosService } from "../../services/empleados.service";
@@ -15,29 +15,29 @@ function Empleados() {
     C: "(Consultar)",
     L: "(Listado)",
   };
-  const [AccionABMC, setAccionABMC] = useState("L");
 
+  const [AccionABMC, setAccionABMC] = useState("L");
   const [Nombre, setNombre] = useState("");
   const [Apellido, setApellido] = useState("");
-
-  const [Items, setItems] = useState(null);
-  const [Item, setItem] = useState(null); // usado en BuscarporId (Modificar, Consultar)
+  const [Activo, setActivo] = useState("");
+  const [Items, setItems] = useState([]);
+  const [Item, setItem] = useState(null);
   const [RegistrosTotal, setRegistrosTotal] = useState(0);
   const [Pagina, setPagina] = useState(1);
   const [Paginas, setPaginas] = useState([]);
 
-  // cargar al "montar" el componente, solo la primera vez (por la dependencia [])
-  useEffect(() => {
-    async function BuscarEmpleados() {
-      let data = await empleadosService.Buscar();
-      setItems(data);
-      setRegistrosTotal(data.length);
-      setPaginas([...Array(Math.ceil(data.length / 10)).keys()].map(x => x + 1));
-    }
-    BuscarEmpleados();
+  const fetchEmpleados = useCallback(async () => {
+    const data = await empleadosService.Buscar();
+    setItems(data);
+    setRegistrosTotal(data.length);
+    setPaginas([...Array(Math.ceil(data.length / 10)).keys()].map(x => x + 1));
   }, []);
 
-  async function Buscar() {
+  useEffect(() => {
+    fetchEmpleados();
+  }, [fetchEmpleados]);
+
+  const Buscar = useCallback(async () => {
     setAccionABMC("L");
     let data = await empleadosService.Buscar();
     if (Nombre) {
@@ -46,28 +46,32 @@ function Empleados() {
     if (Apellido) {
       data = data.filter(empleado => empleado.Apellido.toLowerCase().includes(Apellido.toLowerCase()));
     }
+    if (Activo !== "") {
+      const isActivo = Activo === "true" ? true : Activo === "false" ? false : "";
+      data = data.filter(empleado => empleado.Activo === (isActivo ? 1 : 0));
+    }
     setItems(data);
-  }
+  }, [Nombre, Apellido, Activo]);
 
-  async function BuscarPorId(item, accionABMC) {
+  const BuscarPorId = useCallback(async (item, accionABMC) => {
     setAccionABMC(accionABMC);
-    let data = await empleadosService.BuscarPorId(item);
+    const data = await empleadosService.BuscarPorId(item);
     setItem(data);
-  }
+  }, []);
 
-  function Consultar(item) {
+  const Consultar = useCallback((item) => {
     BuscarPorId(item, "C");
-  }
-  
-  function Modificar(item) {
+  }, [BuscarPorId]);
+
+  const Modificar = useCallback((item) => {
     if (!item.Activo) {
       alert("No puede modificarse un registro Inactivo.");
       return;
     }
     BuscarPorId(item, "M");
-  }
+  }, [BuscarPorId]);
 
-  async function Agregar() {
+  const Agregar = useCallback(() => {
     setAccionABMC("A");
     setItem({
       IdEmpleado: 0,
@@ -76,34 +80,31 @@ function Empleados() {
       FechaAlta: moment(new Date()).format("YYYY-MM-DD"),
       Activo: true,
     });
-  }
+  }, []);
 
-  function Imprimir() {
+  const Imprimir = useCallback(() => {
     alert("En desarrollo...");
-  }
+  }, []);
 
-  async function ActivarDesactivar(item) {
+  const ActivarDesactivar = useCallback(async (item) => {
     const resp = window.confirm(
-      "Está seguro que quiere " +
-        (item.Activo ? "desactivar" : "activar") +
-        " el registro?"
+      "Está seguro que quiere " + (item.Activo ? "desactivar" : "activar") + " el registro?"
     );
     if (resp) {
       await empleadosService.ActivarDesactivar(item);
       Buscar();
     }
-  }
+  }, [Buscar]);
 
-  async function Grabar(item) {
+  const Grabar = useCallback(async (item) => {
     await empleadosService.Grabar(item);
     alert("Registro " + (AccionABMC === "A" ? "agregado" : "modificado") + " correctamente.");
     Volver();
-  }
+  }, [AccionABMC]);
 
-  // Volver/Cancelar desde Agregar/Modificar/Consultar
-  function Volver() {
+  const Volver = useCallback(() => {
     setAccionABMC("L");
-  }
+  }, []);
 
   return (
     <div>
@@ -114,34 +115,38 @@ function Empleados() {
       <EmpleadosBuscar
         Nombre={Nombre}
         setNombre={setNombre}
+        Apellido={Apellido}
         setApellido={setApellido}
+        Activo={Activo}
+        setActivo={setActivo}
         Buscar={Buscar}
         Agregar={Agregar}
       />
 
-      {/* Tabla de resultados de búsqueda y Paginador */}
       <EmpleadosListado
-        {...{
-          Items,
-          Consultar,
-          Modificar,
-          ActivarDesactivar,
-          Imprimir,
-          Pagina,
-          RegistrosTotal,
-          Paginas,
-          Buscar,
-        }}
+        Items={Items}
+        Consultar={Consultar}
+        Modificar={Modificar}
+        ActivarDesactivar={ActivarDesactivar}
+        Imprimir={Imprimir}
+        Pagina={Pagina}
+        RegistrosTotal={RegistrosTotal}
+        Paginas={Paginas}
+        Buscar={Buscar}
       />
 
-      <div className="alert alert-info mensajesAlert">
-        <i className="fa fa-exclamation-sign"></i>
-        No se encontraron registros...
-      </div>
+      {Items.length === 0 && (
+        <div className="alert alert-info mensajesAlert">
+          <i className="fa fa-exclamation-sign"></i> No se encontraron registros...
+        </div>
+      )}
 
-      {/* Formulario de alta/modificación/consulta */}
       <EmpleadosRegistro
-        {...{ AccionABMC, Item, setItem, Grabar, Volver }}
+        AccionABMC={AccionABMC}
+        Item={Item}
+        setItem={setItem}
+        Grabar={Grabar}
+        Volver={Volver}
       />
     </div>
   );
