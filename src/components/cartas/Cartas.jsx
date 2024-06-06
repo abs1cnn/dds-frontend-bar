@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import moment from "moment";
 
 import { cartasService } from "../../services/cartas.service";
@@ -37,7 +37,6 @@ function Cartas() {
 
   async function Buscar() {
     setAccionABMC("L");
-    setAccionABMC("L");
     let data = await cartasService.Buscar();
     if (Nombre) {
       data = data.filter(carta => carta.Nombre.toLowerCase().includes(Nombre.toLowerCase()));
@@ -58,7 +57,7 @@ function Cartas() {
     setItem(item);
   }
 
-  async function Agregar() {
+  const Agregar = useCallback(() => {
     setAccionABMC("A");
     setItem({
       IdCarta: 0,
@@ -68,12 +67,18 @@ function Cartas() {
       Categoria: "",
       Activo: true,
     });
-  }
+  }, []);
 
-  function Volver() {
+  const Grabar = useCallback(async (item) => {
+    await cartasService.Grabar(item);
+    alert("Registro " + (AccionABMC === "A" ? "agregado" : "modificado") + " correctamente.");
+    Volver();
+    Buscar();  // Para actualizar la lista después de guardar
+  }, [AccionABMC]);
+
+  const Volver = useCallback(() => {
     setAccionABMC("L");
-    setItem(null);
-  }
+  }, []);
 
   return (
     <div>
@@ -102,11 +107,12 @@ function Cartas() {
         Buscar={Buscar}
       />
 
-      {AccionABMC !== "C" && (
+      {AccionABMC !== "L" && (
         <CartasRegistro
           AccionABMC={AccionABMC}
           Item={Item}
-          Grabar={() => {}}
+          setItem={setItem}
+          Grabar={Grabar}
           Volver={Volver}
         />
       )}

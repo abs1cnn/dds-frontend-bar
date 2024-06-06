@@ -38,13 +38,13 @@ function Pedidos() {
 
   async function Buscar() {
     setAccionABMC("L");
-      let data = await pedidosService.Buscar();
-      if (FechaAlta) {
-        data = data.filter(pedido => pedido.FechaAlta.toLowerCase().includes(FechaAlta.toLowerCase()));
-      }
-      if (Precio) {
-        data = data.filter(pedido => pedido.Precio === parseInt(Precio, 10));
-      }
+    let data = await pedidosService.Buscar();
+    if (FechaAlta) {
+      data = data.filter(pedido => pedido.FechaAlta.toLowerCase().includes(FechaAlta.toLowerCase()));
+    }
+    if (Precio) {
+      data = data.filter(pedido => pedido.Precio === parseInt(Precio, 10));
+    }
     setItems(data);
   }
 
@@ -66,6 +66,11 @@ function Pedidos() {
       Precio: 0,
       IdEmpleado: 0,
     });
+  }
+
+  async function Grabar(item) {
+    await pedidosService.Grabar(item);
+    await Buscar();
   }
 
   function Volver() {
@@ -100,11 +105,12 @@ function Pedidos() {
         Buscar={Buscar}
       />
 
-      {AccionABMC !== "C" && (
+      {AccionABMC !== "L" && (
         <PedidosRegistro
           AccionABMC={AccionABMC}
           Item={Item}
-          Grabar={() => {}}
+          setItem={setItem}
+          Grabar={Grabar}
           Volver={Volver}
         />
       )}

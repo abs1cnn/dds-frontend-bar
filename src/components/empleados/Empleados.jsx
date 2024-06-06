@@ -17,9 +17,11 @@ function Empleados() {
   };
 
   const [AccionABMC, setAccionABMC] = useState("L");
+
   const [Nombre, setNombre] = useState("");
   const [Apellido, setApellido] = useState("");
   const [Activo, setActivo] = useState("");
+  
   const [Items, setItems] = useState([]);
   const [Item, setItem] = useState(null);
   const [RegistrosTotal, setRegistrosTotal] = useState(0);
@@ -153,3 +155,4 @@ function Empleados() {
 }
 
 export { Empleados };
+   

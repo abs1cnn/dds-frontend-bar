@@ -3,12 +3,19 @@ import React from "react";
 export default function CartasRegistro({
   AccionABMC,
   Item,
+  setItem,
   Grabar,
   Volver,
 }) {
   if (!Item) return null;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    Grabar(Item);
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="container-fluid">
         <fieldset disabled={AccionABMC === "C"}>
           <div className="row">
@@ -22,12 +29,13 @@ export default function CartasRegistro({
                 type="text"
                 name="Nombre"
                 value={Item?.Nombre}
-                autoFocus
-                className="form-control "
+                className="form-control"
+                onChange={(e) => setItem({ ...Item, Nombre: e.target.value })}
               />
             </div>
           </div>
 
+          {/* Campo Descripcion */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
               <label className="col-form-label" htmlFor="Descripcion">
@@ -38,12 +46,14 @@ export default function CartasRegistro({
               <input
                 type="text"
                 name="Descripcion"
-                value={Item?.Descripcion}
+                value={Item.Descripcion}
                 className="form-control"
+                onChange={(e) => setItem({ ...Item, Descripcion: e.target.value })}
               />
             </div>
           </div>
 
+          {/* Campo Precio */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
               <label className="col-form-label" htmlFor="Precio">
@@ -52,15 +62,16 @@ export default function CartasRegistro({
             </div>
             <div className="col-sm-8 col-md-6">
               <input
-                type="number" 
-                step=".01"
+                type="number"
                 name="Precio"
                 value={Item.Precio}
-                className= "form-control" 
+                className="form-control"
+                onChange={(e) => setItem({ ...Item, Precio: e.target.value })}
               />
             </div>
           </div>
 
+          {/* Campo Categoria */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
               <label className="col-form-label" htmlFor="Categoria">
@@ -71,14 +82,32 @@ export default function CartasRegistro({
               <input
                 type="text"
                 name="Categoria"
-                value={Item?.Categoria}
+                value={Item.Categoria}
                 className="form-control"
+                onChange={(e) => setItem({ ...Item, Categoria: e.target.value })}
               />
             </div>
           </div>
 
+          {/* Campo Activo */}
+          <div className="row">
+            <div className="col-sm-4 col-md-3 offset-md-1">
+              <label className="col-form-label" htmlFor="Activo">
+                Activo:
+              </label>
+            </div>
+            <div className="col-sm-8 col-md-6">
+              <input
+                type="checkbox"
+                name="Activo"
+                checked={Item.Activo}
+                onChange={(e) => setItem({ ...Item, Activo: e.target.checked })}
+              />
+            </div>
+          </div>
         </fieldset>
 
+        {/* Botones Grabar, Cancelar/Volver */}
         <hr />
         <div className="row justify-content-center">
           <div className="col text-center botones">
@@ -102,7 +131,6 @@ export default function CartasRegistro({
           <i className="fa fa-exclamation-sign"></i>
           Revisar los datos ingresados...
         </div>
-
       </div>
     </form>
   );
