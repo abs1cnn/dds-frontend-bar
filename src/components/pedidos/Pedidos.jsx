@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import moment from "moment";
 
 import { pedidosService } from "../../services/pedidos.service";
 
@@ -23,9 +22,6 @@ function Pedidos() {
 
   const [Items, setItems] = useState(null);
   const [Item, setItem] = useState(null); 
-  const [RegistrosTotal, setRegistrosTotal] = useState(0);
-  const [Pagina, setPagina] = useState(1);
-  const [Paginas, setPaginas] = useState([]);
 
   // cargar al "montar" el componente, solo la primera vez (por la dependencia [])
   useEffect(() => {
@@ -99,9 +95,6 @@ function Pedidos() {
         Items={Items}
         Consultar={Consultar}
         Modificar={Modificar}
-        Pagina={Pagina}
-        RegistrosTotal={RegistrosTotal}
-        Paginas={Paginas}
         Buscar={Buscar}
       />
 

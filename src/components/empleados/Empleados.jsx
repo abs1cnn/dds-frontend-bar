@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import moment from "moment";
-
 import { empleadosService } from "../../services/empleados.service";
-
 import EmpleadosBuscar from "./EmpleadosBuscar";
 import EmpleadosListado from "./EmpleadosListado";
 import EmpleadosRegistro from "./EmpleadosRegistro";
@@ -17,22 +15,19 @@ function Empleados() {
   };
 
   const [AccionABMC, setAccionABMC] = useState("L");
-
   const [Nombre, setNombre] = useState("");
   const [Apellido, setApellido] = useState("");
   const [Activo, setActivo] = useState("");
-  
   const [Items, setItems] = useState([]);
   const [Item, setItem] = useState(null);
-  const [RegistrosTotal, setRegistrosTotal] = useState(0);
-  const [Pagina, setPagina] = useState(1);
-  const [Paginas, setPaginas] = useState([]);
 
   const fetchEmpleados = useCallback(async () => {
-    const data = await empleadosService.Buscar();
-    setItems(data);
-    setRegistrosTotal(data.length);
-    setPaginas([...Array(Math.ceil(data.length / 10)).keys()].map(x => x + 1));
+    try {
+      const data = await empleadosService.Buscar();
+      setItems(data);
+    } catch (error) {
+      console.error("Error fetching empleados:", error);
+    }
   }, []);
 
   useEffect(() => {
@@ -41,24 +36,32 @@ function Empleados() {
 
   const Buscar = useCallback(async () => {
     setAccionABMC("L");
-    let data = await empleadosService.Buscar();
-    if (Nombre) {
-      data = data.filter(empleado => empleado.Nombre.toLowerCase().includes(Nombre.toLowerCase()));
+    try {
+      let data = await empleadosService.Buscar();
+      if (Nombre) {
+        data = data.filter(empleado => empleado.Nombre.toLowerCase().includes(Nombre.toLowerCase()));
+      }
+      if (Apellido) {
+        data = data.filter(empleado => empleado.Apellido.toLowerCase().includes(Apellido.toLowerCase()));
+      }
+      if (Activo !== "") {
+        const isActivo = Activo === "true" ? true : Activo === "false" ? false : "";
+        data = data.filter(empleado => empleado.Activo === (isActivo ? 1 : 0));
+      }
+      setItems(data);
+    } catch (error) {
+      console.error("Error searching empleados:", error);
     }
-    if (Apellido) {
-      data = data.filter(empleado => empleado.Apellido.toLowerCase().includes(Apellido.toLowerCase()));
-    }
-    if (Activo !== "") {
-      const isActivo = Activo === "true" ? true : Activo === "false" ? false : "";
-      data = data.filter(empleado => empleado.Activo === (isActivo ? 1 : 0));
-    }
-    setItems(data);
   }, [Nombre, Apellido, Activo]);
 
   const BuscarPorId = useCallback(async (item, accionABMC) => {
     setAccionABMC(accionABMC);
-    const data = await empleadosService.BuscarPorId(item);
-    setItem(data);
+    try {
+      const data = await empleadosService.BuscarPorId(item);
+      setItem(data);
+    } catch (error) {
+      console.error("Error fetching empleado by id:", error);
+    }
   }, []);
 
   const Consultar = useCallback((item) => {
@@ -76,12 +79,13 @@ function Empleados() {
   const Agregar = useCallback(() => {
     setAccionABMC("A");
     setItem({
-      IdEmpleado: 0,
+      IdEmpleado: 100,
       Nombre: '',
       Apellido: '',
       FechaAlta: moment(new Date()).format("YYYY-MM-DD"),
       Activo: true,
     });
+    alert("preparando el Alta...");
   }, []);
 
   const Imprimir = useCallback(() => {
@@ -93,15 +97,23 @@ function Empleados() {
       "Está seguro que quiere " + (item.Activo ? "desactivar" : "activar") + " el registro?"
     );
     if (resp) {
-      await empleadosService.ActivarDesactivar(item);
-      Buscar();
+      try {
+        await empleadosService.ActivarDesactivar(item);
+        Buscar();
+      } catch (error) {
+        console.error("Error activating/deactivating empleado:", error);
+      }
     }
   }, [Buscar]);
 
   const Grabar = useCallback(async (item) => {
-    await empleadosService.Grabar(item);
-    alert("Registro " + (AccionABMC === "A" ? "agregado" : "modificado") + " correctamente.");
-    Volver();
+    try {
+      await empleadosService.Grabar(item);
+      alert("Registro " + (AccionABMC === "A" ? "agregado" : "modificado") + " correctamente.");
+      Volver();
+    } catch (error) {
+      console.error("Error saving empleado:", error);
+    }
   }, [AccionABMC]);
 
   const Volver = useCallback(() => {
@@ -131,9 +143,6 @@ function Empleados() {
         Modificar={Modificar}
         ActivarDesactivar={ActivarDesactivar}
         Imprimir={Imprimir}
-        Pagina={Pagina}
-        RegistrosTotal={RegistrosTotal}
-        Paginas={Paginas}
         Buscar={Buscar}
       />
 
@@ -155,4 +164,3 @@ function Empleados() {
 }
 
 export { Empleados };
-   

@@ -1,16 +1,10 @@
 import React from "react";
-import moment from "moment";
 
 export default function CartasListado({
   Items,
   Consultar,
   Modificar,
   ActivarDesactivar,
-  Imprimir,
-  Pagina,
-  RegistrosTotal,
-  Paginas,
-  Buscar,
 }) {
   return (
     <div className="table-responsive">
@@ -66,37 +60,6 @@ export default function CartasListado({
             ))}
         </tbody>
       </table>
-
-      {/* Paginador*/}
-      <div className="paginador">
-        <div className="row">
-          <div className="col">
-            <span className="pyBadge">Registros: {RegistrosTotal}</span>
-          </div>
-          <div className="col text-center">
-            Pagina: &nbsp;
-            <select
-              value={Pagina}
-              onChange={(e) => {
-                Buscar(e.target.value);
-              }}
-            >
-              {Paginas?.map((x) => (
-                <option value={x} key={x}>
-                  {x}
-                </option>
-              ))}
-            </select>
-            &nbsp; de {Paginas?.length}
-          </div>
-
-          <div className="col">
-            <button className="btn btn-primary float-end" onClick={() => Imprimir()}>
-              <i className="fa fa-print"></i>Imprimir
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

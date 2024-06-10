@@ -11,10 +11,7 @@ export default function MesasRegistro({
   return (
     <form>
       <div className="container-fluid">
-
         <fieldset disabled={AccionABMC === "C"}>
-
-          {/* campo Sector */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
               <label className="col-form-label" htmlFor="Sector">

@@ -51,30 +51,6 @@ export default function PedidosListado({
             ))}
         </tbody>
       </table>
-
-      <div className="paginador">
-        <div className="row">
-          <div className="col">
-            <span className="pyBadge">Registros: {RegistrosTotal}</span>
-          </div>
-          <div className="col text-center">
-            Página: &nbsp;
-            <select
-              value={Pagina}
-              onChange={(e) => {
-                Buscar(e.target.value);
-              }}
-            >
-              {Paginas?.map((x) => (
-                <option value={x} key={x}>
-                  {x}
-                </option>
-              ))}
-            </select>
-            &nbsp; de {Paginas?.length}
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

@@ -8,14 +8,8 @@ export default function CartasRegistro({
   Volver,
 }) {
   if (!Item) return null;
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    Grabar(Item);
-  };
-
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <div className="container-fluid">
         <fieldset disabled={AccionABMC === "C"}>
           <div className="row">
@@ -29,6 +23,7 @@ export default function CartasRegistro({
                 type="text"
                 name="Nombre"
                 value={Item?.Nombre}
+                autoFocus
                 className="form-control"
                 onChange={(e) => setItem({ ...Item, Nombre: e.target.value })}
               />
@@ -89,20 +84,24 @@ export default function CartasRegistro({
             </div>
           </div>
 
-          {/* Campo Activo */}
+          {/* campo Activo */}
           <div className="row">
             <div className="col-sm-4 col-md-3 offset-md-1">
               <label className="col-form-label" htmlFor="Activo">
-                Activo:
+                Activo<span className="text-danger">*</span>:
               </label>
             </div>
             <div className="col-sm-8 col-md-6">
-              <input
-                type="checkbox"
+              <select
                 name="Activo"
-                checked={Item.Activo}
-                onChange={(e) => setItem({ ...Item, Activo: e.target.checked })}
-              />
+                className="form-control"
+                value={Item?.Activo}
+                onChange={(e) => setItem({...Item, Activo: e.target.value})}
+              >
+                <option value={null}></option>
+                <option value={false}>NO</option>
+                <option value={true}>SI</option>
+              </select>
             </div>
           </div>
         </fieldset>
@@ -112,7 +111,7 @@ export default function CartasRegistro({
         <div className="row justify-content-center">
           <div className="col text-center botones">
             {AccionABMC !== "C" && (
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary" onClick={(e) => { e.preventDefault(); Grabar(Item); }}>
                 <i className="fa fa-check"></i> Grabar
               </button>
             )}
@@ -127,6 +126,7 @@ export default function CartasRegistro({
           </div>
         </div>
 
+        {/* texto: Revisar los datos ingresados... */}
         <div className="row alert alert-danger mensajesAlert">
           <i className="fa fa-exclamation-sign"></i>
           Revisar los datos ingresados...

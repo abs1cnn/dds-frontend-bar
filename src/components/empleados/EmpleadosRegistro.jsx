@@ -86,7 +86,6 @@ export default function EmpleadosRegistro({
               </select>
             </div>
           </div>
-
         </fieldset>
 
         {/* Botones Grabar, Cancelar/Volver */}
@@ -114,7 +113,6 @@ export default function EmpleadosRegistro({
           <i className="fa fa-exclamation-sign"></i>
           Revisar los datos ingresados...
         </div>
-
       </div>
     </form>
   );
