@@ -1,3 +1,6 @@
+// esta no muestra nombre y apellido, muestra id. 
+// ya lo cambie poniendo {Item.Apellido} y {Item.Nombre}. pero no
+
 import React from "react";
 import moment from "moment";
 
