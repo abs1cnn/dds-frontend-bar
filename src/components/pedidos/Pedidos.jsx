@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-
 import { pedidosService } from "../../services/pedidos.service";
-
 import PedidosBuscar from "./PedidosBuscar";
 import PedidosListado from "./PedidosListado";
 import PedidosRegistro from "./PedidosRegistro";
@@ -15,15 +13,13 @@ function Pedidos() {
     L: "(Listado)",
   };
   const [AccionABMC, setAccionABMC] = useState("L");
-
   const [FechaAlta, setFechaAlta] = useState("");
   const [Precio, setPrecio] = useState("");
   const [IdEmpleado, setIdEmpleado] = useState("");
-
   const [Items, setItems] = useState(null);
-  const [Item, setItem] = useState(null); 
+  const [Item, setItem] = useState(null);
 
-  // cargar al "montar" el componente, solo la primera vez (por la dependencia [])
+  // Cargar al "montar" el componente, solo la primera vez (por la dependencia [])
   useEffect(() => {
     async function BuscarPedidos() {
       let data = await pedidosService.Buscar();
@@ -32,28 +28,34 @@ function Pedidos() {
     BuscarPedidos();
   }, []);
 
+  // Función para buscar pedidos
   async function Buscar() {
     setAccionABMC("L");
     let data = await pedidosService.Buscar();
     if (FechaAlta) {
-      data = data.filter(pedido => pedido.FechaAlta.toLowerCase().includes(FechaAlta.toLowerCase()));
+      data = data.filter((pedido) =>
+        pedido.FechaAlta.toLowerCase().includes(FechaAlta.toLowerCase())
+      );
     }
     if (Precio) {
-      data = data.filter(pedido => pedido.Precio === parseInt(Precio, 10));
+      data = data.filter((pedido) => pedido.Precio === parseInt(Precio, 10));
     }
     setItems(data);
   }
 
+  // Función para consultar un pedido
   function Consultar(item) {
     setAccionABMC("C");
     setItem(item);
   }
 
+  // Función para modificar un pedido
   function Modificar(item) {
     setAccionABMC("M");
     setItem(item);
   }
 
+  // Función para agregar un nuevo pedido
   async function Agregar() {
     setAccionABMC("A");
     setItem({
@@ -64,11 +66,13 @@ function Pedidos() {
     });
   }
 
+  // Función para guardar un pedido (tanto agregar como modificar)
   async function Grabar(item) {
     await pedidosService.Grabar(item);
     await Buscar();
   }
 
+  // Función para volver a la lista de pedidos
   function Volver() {
     setAccionABMC("L");
     setItem(null);
@@ -110,4 +114,5 @@ function Pedidos() {
     </div>
   );
 }
+
 export { Pedidos };
