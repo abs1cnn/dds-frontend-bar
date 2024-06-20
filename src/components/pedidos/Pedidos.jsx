@@ -37,6 +37,9 @@ function Pedidos() {
         pedido.FechaAlta.toLowerCase().includes(FechaAlta.toLowerCase())
       );
     }
+    if (IdEmpleado) {
+      data = data.filter((pedido) => pedido.IdEmpleado === parseInt(IdEmpleado, 10));
+    }
     if (Precio) {
       data = data.filter((pedido) => pedido.Precio === parseInt(Precio, 10));
     }
@@ -97,6 +100,7 @@ function Pedidos() {
 
       <PedidosListado
         Items={Items}
+        setFechaAlta={setFechaAlta}
         Consultar={Consultar}
         Modificar={Modificar}
         Buscar={Buscar}
