@@ -86,6 +86,24 @@ export default function MesasRegistro({
             </div>
           </div>
 
+          {/* campo Capacidad */}
+          <div className="row">
+            <div className="col-sm-4 col-md-3 offset-md-1">
+              <label className="col-form-label" htmlFor="Capacidad">
+                Empleado<span className="text-danger">*</span>:
+              </label>
+            </div>
+            <div className="col-sm-8 col-md-6">
+              <input
+                type="number"
+                name="IdEmpleado"
+                value={Item?.IdEmpleado}
+                className="form-control"
+                onChange={(e) => setItem({...Item, IdEmpleado: e.target.value})}
+              />
+            </div>
+          </div>
+
         </fieldset>
 
         {/* Botones Grabar, Cancelar/Volver */}

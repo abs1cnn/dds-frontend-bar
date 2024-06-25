@@ -9,7 +9,7 @@ export default function PedidosListado({ Items, Consultar, Modificar, Buscar }) 
           <tr>
             <th className="text-center">Fecha Alta</th>
             <th className="text-center">Precio</th>
-            <th className="text-center">ID Empleado</th>
+            <th className="text-center">Empleado</th>
             <th className="text-center text-nowrap">Acciones</th>
           </tr>
         </thead>

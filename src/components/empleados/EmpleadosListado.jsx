@@ -23,12 +23,12 @@ export default function EmpleadosListado({
           {Items &&
             Items.map((Item) => (
               <tr key={Item.IdEmpleado}>
-                <td>{Item.Nombre}</td>
-                <td>{Item.Apellido}</td>
-                <td className="text-end">
+                <td className="text-center">{Item.Nombre}</td>
+                <td className="text-center">{Item.Apellido}</td>
+                <td className="text-center">
                   {moment(Item.FechaAlta).format("DD/MM/YYYY")}
                 </td>
-                <td>{Item.Activo ? "SI" : "NO"}</td>
+                <td className="text-center">{Item.Activo ? "SI" : "NO"}</td>
                 <td className="text-center text-nowrap">
                   <button
                     className="btn btn-sm btn-outline-primary"

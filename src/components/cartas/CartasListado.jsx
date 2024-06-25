@@ -24,8 +24,8 @@ export default function CartasListado({
               <tr key={Item.IdCarta}>
                 <td>{Item.Nombre}</td>
                 <td>{Item.Descripcion}</td>
-                <td className="text-end">{Item.Precio}</td>
-                <td>{Item.Categoria}</td>
+                <td className="text-center">{Item.Precio}</td>
+                <td className="text-center">{Item.Categoria}</td>
                 <td className="text-center text-nowrap">
                   <button
                     className="btn btn-sm btn-outline-primary"

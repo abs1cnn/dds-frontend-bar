@@ -15,6 +15,7 @@ export default function MesasListado({
             <th className="text-center">Capacidad</th>
             <th className="text-center">Tipo</th>
             <th className="text-center">Ocupada</th>
+            <th className="text-center">Empleado</th>
             <th className="text-center text-nowrap">Acciones</th>
           </tr>
         </thead>
@@ -22,10 +23,11 @@ export default function MesasListado({
           {Items &&
             Items.map((Item) => (
               <tr key={Item.IdMesa}>
-                <td>{Item.Sector}</td>
-                <td className="text-end">{Item.Capacidad}</td>
-                <td>{Item.Tipo}</td>
-                <td>{Item.Ocupada ? "SI" : "NO"}</td>
+                <td className="text-center">{Item.Sector}</td>
+                <td className="text-center">{Item.Capacidad}</td>
+                <td className="text-center">{Item.Tipo}</td>
+                <td className="text-center">{Item.Ocupada ? "SI" : "NO"}</td>
+                <td className="text-center">{Item.IdEmpleado} - {Item.NombreEmpleado}</td>
                 <td className="text-center text-nowrap">
                   <button
                     className="btn btn-sm btn-outline-primary"
