@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function PedidosRegistro({
   AccionABMC,
@@ -7,11 +7,40 @@ export default function PedidosRegistro({
   Grabar,
   Volver,
 }) {
+  const [errors, setErrors] = useState({});
+
   if (!Item) return null;
+
+  const validate = () => {
+    const newErrors = {};
+
+    if (!Item.FechaAlta) {
+      newErrors.FechaAlta = "La fecha de alta es obligatoria.";
+    } else {
+      const datePattern = /^\d{4}-\d{2}-\d{2}$/; // Assumes date format is YYYY-MM-DD
+      if (!datePattern.test(Item.FechaAlta)) {
+        newErrors.FechaAlta = "La fecha de alta debe estar en formato válido (AAAA-MM-DD).";
+      }
+    }
+
+    if (!Item.Precio || Item.Precio <= 0) {
+      newErrors.Precio = "El precio es obligatorio y debe ser mayor que 0.";
+    }
+
+    if (!Item.IdEmpleado) {
+      newErrors.IdEmpleado = "El ID del empleado es obligatorio.";
+    }
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    Grabar(Item);
+    if (validate()) {
+      Grabar(Item);
+    }
   };
 
   return (
@@ -29,9 +58,10 @@ export default function PedidosRegistro({
                 type="text"
                 name="FechaAlta"
                 value={Item?.FechaAlta}
-                className="form-control"
+                className={`form-control ${errors.FechaAlta ? 'is-invalid' : ''}`}
                 onChange={(e) => setItem({ ...Item, FechaAlta: e.target.value })}
               />
+              {errors.FechaAlta && <div className="invalid-feedback">{errors.FechaAlta}</div>}
             </div>
           </div>
 
@@ -47,9 +77,10 @@ export default function PedidosRegistro({
                 type="number"
                 name="Precio"
                 value={Item.Precio}
-                className="form-control"
+                className={`form-control ${errors.Precio ? 'is-invalid' : ''}`}
                 onChange={(e) => setItem({ ...Item, Precio: e.target.value })}
               />
+              {errors.Precio && <div className="invalid-feedback">{errors.Precio}</div>}
             </div>
           </div>
 
@@ -65,9 +96,10 @@ export default function PedidosRegistro({
                 type="number"
                 name="IdEmpleado"
                 value={Item.IdEmpleado}
-                className="form-control"
+                className={`form-control ${errors.IdEmpleado ? 'is-invalid' : ''}`}
                 onChange={(e) => setItem({ ...Item, IdEmpleado: e.target.value })}
               />
+              {errors.IdEmpleado && <div className="invalid-feedback">{errors.IdEmpleado}</div>}
             </div>
           </div>
         </fieldset>
@@ -92,10 +124,13 @@ export default function PedidosRegistro({
           </div>
         </div>
 
-        <div className="row alert alert-danger mensajesAlert">
-          <i className="fa fa-exclamation-sign"></i>
-          Revisar los datos ingresados...
-        </div>
+        {/* texto: Revisar los datos ingresados... */}
+        {Object.keys(errors).length > 0 && (
+          <div className="row alert alert-danger mensajesAlert">
+            <i className="fa fa-exclamation-sign"></i>
+            Revisar los datos ingresados...
+          </div>
+        )}
       </div>
     </form>
   );

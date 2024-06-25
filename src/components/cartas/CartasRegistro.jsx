@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function CartasRegistro({
   AccionABMC,
@@ -7,9 +7,43 @@ export default function CartasRegistro({
   Grabar,
   Volver,
 }) {
+  const [errors, setErrors] = useState({});
+
   if (!Item) return null;
+
+  const validate = () => {
+    const newErrors = {};
+
+    if (!Item.Nombre) {
+      newErrors.Nombre = "El nombre es obligatorio.";
+    }
+
+    if (!Item.Descripcion) {
+      newErrors.Descripcion = "La descripción es obligatoria.";
+    }
+
+    if (!Item.Precio || Item.Precio <= 0) {
+      newErrors.Precio = "El precio es obligatorio y debe ser mayor que 0.";
+    }
+
+    if (!Item.Categoria) {
+      newErrors.Categoria = "La categoría es obligatoria.";
+    }
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validate()) {
+      Grabar(Item);
+    }
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="container-fluid">
         <fieldset disabled={AccionABMC === "C"}>
           <div className="row">
@@ -24,9 +58,10 @@ export default function CartasRegistro({
                 name="Nombre"
                 value={Item?.Nombre}
                 autoFocus
-                className="form-control"
+                className={`form-control ${errors.Nombre ? 'is-invalid' : ''}`}
                 onChange={(e) => setItem({ ...Item, Nombre: e.target.value })}
               />
+              {errors.Nombre && <div className="invalid-feedback">{errors.Nombre}</div>}
             </div>
           </div>
 
@@ -42,9 +77,10 @@ export default function CartasRegistro({
                 type="text"
                 name="Descripcion"
                 value={Item.Descripcion}
-                className="form-control"
+                className={`form-control ${errors.Descripcion ? 'is-invalid' : ''}`}
                 onChange={(e) => setItem({ ...Item, Descripcion: e.target.value })}
               />
+              {errors.Descripcion && <div className="invalid-feedback">{errors.Descripcion}</div>}
             </div>
           </div>
 
@@ -60,9 +96,10 @@ export default function CartasRegistro({
                 type="number"
                 name="Precio"
                 value={Item.Precio}
-                className="form-control"
+                className={`form-control ${errors.Precio ? 'is-invalid' : ''}`}
                 onChange={(e) => setItem({ ...Item, Precio: e.target.value })}
               />
+              {errors.Precio && <div className="invalid-feedback">{errors.Precio}</div>}
             </div>
           </div>
 
@@ -78,9 +115,10 @@ export default function CartasRegistro({
                 type="text"
                 name="Categoria"
                 value={Item.Categoria}
-                className="form-control"
+                className={`form-control ${errors.Categoria ? 'is-invalid' : ''}`}
                 onChange={(e) => setItem({ ...Item, Categoria: e.target.value })}
               />
+              {errors.Categoria && <div className="invalid-feedback">{errors.Categoria}</div>}
             </div>
           </div>
 
@@ -94,14 +132,15 @@ export default function CartasRegistro({
             <div className="col-sm-8 col-md-6">
               <select
                 name="Activo"
-                className="form-control"
+                className={`form-control ${errors.Activo ? 'is-invalid' : ''}`}
                 value={Item?.Activo}
-                onChange={(e) => setItem({...Item, Activo: e.target.value})}
+                onChange={(e) => setItem({ ...Item, Activo: e.target.value })}
               >
-                <option value={null}></option>
+                <option value=""></option>
                 <option value={false}>NO</option>
                 <option value={true}>SI</option>
               </select>
+              {errors.Activo && <div className="invalid-feedback">{errors.Activo}</div>}
             </div>
           </div>
         </fieldset>
@@ -111,7 +150,7 @@ export default function CartasRegistro({
         <div className="row justify-content-center">
           <div className="col text-center botones">
             {AccionABMC !== "C" && (
-              <button type="submit" className="btn btn-primary" onClick={(e) => { e.preventDefault(); Grabar(Item); }}>
+              <button type="submit" className="btn btn-primary">
                 <i className="fa fa-check"></i> Grabar
               </button>
             )}
@@ -127,10 +166,12 @@ export default function CartasRegistro({
         </div>
 
         {/* texto: Revisar los datos ingresados... */}
-        <div className="row alert alert-danger mensajesAlert">
-          <i className="fa fa-exclamation-sign"></i>
-          Revisar los datos ingresados...
-        </div>
+        {Object.keys(errors).length > 0 && (
+          <div className="row alert alert-danger mensajesAlert">
+            <i className="fa fa-exclamation-sign"></i>
+            Revisar los datos ingresados...
+          </div>
+        )}
       </div>
     </form>
   );
