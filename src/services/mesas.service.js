@@ -4,7 +4,12 @@ const urlResource = "http://localhost:3000/api/mesas";
 
 async function Buscar() {
   const resp = await axios.get(urlResource);
-  return resp.data;
+  // Mapear los datos para incluir Nombre y Apellido del empleado
+  const mesasConEmpleado = resp.data.map((mesas) => ({
+    ...mesas,
+    NombreEmpleado: mesas.articulosEmpleado ? `${mesas.articulosEmpleado.Nombre} ${mesas.articulosEmpleado.Apellido}` : 'N/A'
+  }));
+  return mesasConEmpleado;
 }
 
 async function BuscarPorId(item) {
@@ -16,7 +21,7 @@ async function ActivarDesactivar(item) {
 }
 
 async function Grabar(item) {
-  if (item.IdMesa === 100) {
+  if (item.IdMesa === 0) {
     await axios.post(urlResource, item);
   } else {
     await axios.put(urlResource + "/" + item.IdMesa, item);

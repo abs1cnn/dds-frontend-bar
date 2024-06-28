@@ -1,5 +1,5 @@
-import axios from "axios";
 
+import axios from "axios";
 const urlResource = "http://localhost:3000/api/pedidos";
 
 async function Buscar() {

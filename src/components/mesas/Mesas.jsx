@@ -83,11 +83,12 @@ function Mesas() {
   const Agregar = useCallback(() => {
     setAccionABMC("A");
     setItem({
-      IdMesa: 100,
+      IdMesa: 0,
       Sector: '',
       Capacidad: 0,
       Tipo: '',
       Ocupada: false,
+      IdEmpleado: 0,
     });
     alert("Preparando el alta...");
   }, []);
