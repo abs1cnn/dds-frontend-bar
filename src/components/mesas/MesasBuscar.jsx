@@ -76,7 +76,7 @@ export default function MesasBuscar({
             <button
               type="button"
               className="btn btn-primary"
-              onClick={() => Buscar()}
+              onClick={() => Buscar(1)}
             >
               <i className="fa fa-search"> </i> Buscar
             </button>

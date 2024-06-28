@@ -67,6 +67,10 @@ function Cartas() {
       Categoria: "",
       Activo: true,
     });
+    alert("preparando el Alta...");
+  }, []);
+  const Imprimir = useCallback(() => {
+    alert("En desarrollo...");
   }, []);
 
   const Grabar = useCallback(async (item) => {
@@ -100,13 +104,18 @@ function Cartas() {
         Consultar={Consultar}
         Modificar={Modificar}
         ActivarDesactivar={() => {}}
-        Imprimir={() => {}}
+        Imprimir={Imprimir}
         Pagina={Pagina}
         RegistrosTotal={RegistrosTotal}
         Paginas={Paginas}
         Buscar={Buscar}
       />
 
+      {Items.length === 0 && (
+        <div className="alert alert-info mensajesAlert">
+          <i className="fa fa-exclamation-sign"></i> No se encontraron registros...
+        </div>
+      )}
       {AccionABMC !== "L" && (
         <CartasRegistro
           AccionABMC={AccionABMC}

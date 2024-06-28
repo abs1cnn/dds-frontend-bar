@@ -21,9 +21,6 @@ function Mesas() {
   const [Items, setItems] = useState([]);
   const [Item, setItem] = useState(null);
 
-  useEffect(() => {
-    fetchMesas();
-  }, []);
 
   const fetchMesas = useCallback(async () => {
     try {
@@ -33,6 +30,10 @@ function Mesas() {
       console.error("Error fetching mesas:", error);
     }
   }, []);
+  useEffect(() => {
+    fetchMesas();
+  }, [fetchMesas]);
+
 
   const Buscar = useCallback(async () => {
     setAccionABMC("L");
@@ -72,6 +73,10 @@ function Mesas() {
   }, [BuscarPorId]);
 
   const Modificar = useCallback((item) => {
+    if (!item.Activo) {
+      alert("No puede modificarse un registro Inactivo.");
+      return;
+    }
     BuscarPorId(item, "M");
   }, [BuscarPorId]);
 
