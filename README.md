@@ -1,38 +1,78 @@
-........................................................................................
-PROYECTO GESTION DE PEDIDOS BAR 
-........................................................................................
-CONTRIBUCIONES: ABIGAIL CANAAN Y LANDRANCO PUCHETTA
-CATEDRA: DESARROLLO DE APLICACIONES
-.......................................................................................
-VENTANA DE INICIO
+##########################################################################################
+                                 PROYECTO: GESTIÓN DE PEDIDOS BAR
+##########################################################################################
+
+**Contribuciones**: Abigail Canaan y Landranco Puchetta  
+**Cátedra**: Desarrollo de Aplicaciones  
+
+---
+
+### **Vista Previa de la Aplicación**
+
+#### Ventana de Inicio  
 ![image](https://github.com/user-attachments/assets/3f2bc9fb-fa7d-423d-923f-3b111bab808f)
-VENTANA DE EMPLEADOS
+
+#### Ventana de Empleados  
 ![image](https://github.com/user-attachments/assets/2933c257-054b-4a3d-8f77-f506a265baab)
-- CONTROL DE CAMPOS VACIOS, FECHAS (PEDIDO A FUTURO NO), CANTIDADES NOMENORES A 0. CAMPOS DE TEXTO LONGITUD SEGUN CORRESPONDA
-- EMPLEADOS INACTIVOS, NO SE LOS PUEDE MODIFICAR
-- SI UN EMPLEADO ESTA INACTIVO DE SUS RESPONSABILIDADES, NO PUEDE REGISTRARSE EN UN PEDIDO.
-- NO SE REALIZA BORRADO DE LA BDS, REALIZA BAJA LOGICA.
-- CONSULTA 
 
-DESARROLLO
-GESTION Y ADMINISTRACION DE UN BAR. NO SE CUENTA CON CARRUCEL DE PAGOS.
-ENTIDADES QUE SE GESTIONAN: EMPLEADOS, MENU, MESAS DISPONIBLES/OCUPADAS Y PEDIDOS.
-SE REALIZA EL ABMC (ALTA, BAJA, MODIFICACION Y CONSULTA) DE TODAS LAS ENTIDADES QUE LO REQUIERAN.
-TABLAS VINCULADASCON OTRAS. EJEMPLO: ENTIDAD PEDIDO, SE REALCIONA CON EL EMPLEADO QUETOMO LA ORDEN.
-CONSULTAS A TRAVEZ DE QUERYS.
+---
 
-TECNOLOGIAS USADAS
-- REACT: Librería JavaScript para construir interfaces de usuario.
-- BOOTSTRAP: Framework CSS para diseño y estilos responsivos.
-- JAVASCRIPT: Lenguaje de programación dinámico utilizado tanto en frontend como backend.
-- POSTMAN: Herramienta para pruebas y documentación de APIs.
-- EXPRESS: Framework para desarrollo backend ágil en Node.js.
-- CORS: Middleware para manejar solicitudes entre dominios.
-- SQLITE: Base de datos ligera y embebida para almacenar información.
-- SEQUELIZE: ORM que simplifica la interacción con bases de datos relacionales.
-- NODE.JS: Entorno de ejecución para JavaScript del lado del servidor.
+### **Características Principales**
 
-NOTAS
-- DESCARGAR EL ARCHIVO ZIP, TANTO DEL FROT COMO EL BACK. REALIZAR NPM I Y NPM START. PRENDER BACK LUEGO FRONT.
-- POSIBLE PROBLEMAS CON VERSIONES DE NODE.
-- FALTA COMPLETAR VERIFICACIONES DE CAMPOS
+- **Validaciones:**  
+  - Control de campos vacíos, fechas (los pedidos a futuro no son válidos), y cantidades (no menores a 0).  
+  - Longitud de los campos de texto según corresponda.  
+
+- **Empleados:**  
+  - Empleados inactivos no pueden ser modificados.  
+  - Si un empleado está inactivo, no puede ser asignado a un pedido.  
+  - No se realiza borrado físico en la base de datos, solo baja lógica.  
+
+- **Consultas:**  
+  - Permite realizar búsquedas avanzadas mediante queries.
+
+---
+
+### **Desarrollo**
+
+La aplicación gestiona y administra un bar. Algunas características clave:  
+- **Entidades gestionadas:**  
+  - Empleados, Menú, Mesas disponibles/ocupadas y Pedidos.  
+- **Operaciones CRUD (ABMC):**  
+  - Alta, Baja, Modificación y Consulta para todas las entidades necesarias.  
+- **Relaciones entre tablas:**  
+  - Ejemplo: La entidad "Pedido" está vinculada al empleado que tomó la orden.  
+- **Consultas:**  
+  - Se realizan mediante queries SQL directas.
+
+---
+
+### **Tecnologías Usadas**
+
+- **REACT**: Librería JavaScript para construir interfaces de usuario.  
+- **BOOTSTRAP**: Framework CSS para diseño y estilos responsivos.  
+- **JAVASCRIPT**: Lenguaje de programación dinámico utilizado tanto en frontend como backend.  
+- **POSTMAN**: Herramienta para pruebas y documentación de APIs.  
+- **EXPRESS**: Framework para desarrollo backend ágil en Node.js.  
+- **CORS**: Middleware para manejar solicitudes entre dominios.  
+- **SQLITE**: Base de datos ligera y embebida para almacenar información.  
+- **SEQUELIZE**: ORM que simplifica la interacción con bases de datos relacionales.  
+- **NODE.JS**: Entorno de ejecución para JavaScript del lado del servidor.
+
+---
+
+### **Notas Importantes**
+
+1. **Instalación y Configuración:**  
+   - Descarga los archivos ZIP, tanto del **frontend** como del **backend**.  
+   - Ejecuta `npm install` y luego `npm start`.  
+   - Inicia primero el backend y luego el frontend.  
+
+2. **Posibles Problemas:**  
+   - Asegúrate de tener versiones compatibles de Node.js.  
+
+3. **Pendientes:**  
+   - Completar las verificaciones de campos para mayor robustez.
+
+---
+
