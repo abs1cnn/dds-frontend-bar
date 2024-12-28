@@ -17,7 +17,8 @@
 
 La aplicación gestiona y administra un bar. Algunas características clave:  
 - **Entidades gestionadas:**  
-  - Empleados, Menú, Mesas disponibles/ocupadas y Pedidos.  
+  - Empleados, Menú, Mesas disponibles/ocupadas y Pedidos.
+  - entidad empleados, maneja correctamente el CRUD completo
 - **Operaciones CRUD (ABMC):**  
   - Alta, Baja, Modificación y Consulta para todas las entidades necesarias.
   - Busqueda por consulta parcial.
@@ -64,7 +65,11 @@ La aplicación gestiona y administra un bar. Algunas características clave:
 3. **Pendientes:**  
    - Completar las verificaciones de campos para mayor robustez.
    - Extender el pedido con un posible detalle de pedido.
+   - Pedido relacionarlo con una mesa.
+   - Si una mesa se desocupa, deja de tener un empleado? segun reglas de negocio.
    - Agreagar mas notificaciones emergentes. Ya sea cuando se agrega un nuevo registro, se modifica o se le realiza la baja logica
+   - Adjuntar diagrama de clases.
+   - Recargar la pagina luego de hacer un alta-baja-modificacion
 
 ---
 
