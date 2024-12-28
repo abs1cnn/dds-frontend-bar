@@ -1,8 +1,6 @@
-##################   PROYECTO: GESTIÓN DE PEDIDOS BAR  ##################
-
-**Contribuciones**: Abigail Canaan y Landranco Puchetta  
+**PROYECTO: GESTIÓN DE PEDIDOS BAR  
+**Contribuciones**: Abigail Canaan y Lanfranco Puchetta  
 **Cátedra**: Desarrollo de Aplicaciones  
-
 ---
 
 ### **Vista Previa de la Aplicación**
@@ -15,47 +13,41 @@
 
 ---
 
-### **Características Principales**
-
-- **Validaciones:**  
-  - Control de campos vacíos, fechas (los pedidos a futuro no son válidos), y cantidades (no menores a 0).  
-  - Longitud de los campos de texto según corresponda.  
-
-- **Empleados:**  
-  - Empleados inactivos no pueden ser modificados.  
-  - Si un empleado está inactivo, no puede ser asignado a un pedido.  
-  - No se realiza borrado físico en la base de datos, solo baja lógica.  
-
-- **Consultas:**  
-  - Permite realizar búsquedas avanzadas mediante queries.
-
----
-
 ### **Desarrollo**
 
 La aplicación gestiona y administra un bar. Algunas características clave:  
 - **Entidades gestionadas:**  
   - Empleados, Menú, Mesas disponibles/ocupadas y Pedidos.  
 - **Operaciones CRUD (ABMC):**  
-  - Alta, Baja, Modificación y Consulta para todas las entidades necesarias.  
+  - Alta, Baja, Modificación y Consulta para todas las entidades necesarias.
+  - Busqueda por consulta parcial.
 - **Relaciones entre tablas:**  
   - Ejemplo: La entidad "Pedido" está vinculada al empleado que tomó la orden.  
 - **Consultas:**  
-  - Se realizan mediante queries SQL directas.
+  - Se realizan mediante queries.
+- **Validaciones:**  
+  - Control de campos vacíos, fechas (los pedidos a futuro no son válidos), y cantidades (no menores a 0).  
+  - Longitud de los campos de texto según corresponda.  
+  - Empleados inactivos no pueden ser modificados.  
+  - Si un empleado está inactivo, no puede ser asignado a un pedido.  
+  - No se realiza borrado físico en la base de datos, solo baja lógica.
+  - Los empleados atienden distintas mesas a la vez
 
 ---
 
 ### **Tecnologías Usadas**
 
-- **REACT**: Librería JavaScript para construir interfaces de usuario.  
-- **BOOTSTRAP**: Framework CSS para diseño y estilos responsivos.  
-- **JAVASCRIPT**: Lenguaje de programación dinámico utilizado tanto en frontend como backend.  
-- **POSTMAN**: Herramienta para pruebas y documentación de APIs.  
-- **EXPRESS**: Framework para desarrollo backend ágil en Node.js.  
-- **CORS**: Middleware para manejar solicitudes entre dominios.  
-- **SQLITE**: Base de datos ligera y embebida para almacenar información.  
-- **SEQUELIZE**: ORM que simplifica la interacción con bases de datos relacionales.  
-- **NODE.JS**: Entorno de ejecución para JavaScript del lado del servidor.
+| Tecnología  | Descripción                                                             |
+|-------------|-------------------------------------------------------------------------|
+| **REACT**   | Librería JavaScript para construir interfaces de usuario.              |
+| **BOOTSTRAP** | Framework CSS para diseño y estilos responsivos.                    |
+| **JAVASCRIPT** | Lenguaje de programación dinámico usado en frontend y backend.     |
+| **POSTMAN** | Herramienta para pruebas y documentación de APIs.                     |
+| **EXPRESS** | Framework backend ágil en Node.js.                                    |
+| **CORS**    | Middleware para manejar solicitudes entre dominios.                   |
+| **SQLITE**  | Base de datos ligera y embebida para almacenamiento.                  |
+| **SEQUELIZE** | ORM para simplificar la interacción con bases de datos relacionales. |
+| **NODE.JS** | Entorno de ejecución para JavaScript del lado del servidor.           |
 
 ---
 
