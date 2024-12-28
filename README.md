@@ -1,6 +1,4 @@
-##########################################################################################
-                                 PROYECTO: GESTIÓN DE PEDIDOS BAR
-##########################################################################################
+##################   PROYECTO: GESTIÓN DE PEDIDOS BAR  ##################
 
 **Contribuciones**: Abigail Canaan y Landranco Puchetta  
 **Cátedra**: Desarrollo de Aplicaciones  
