@@ -63,6 +63,7 @@ La aplicación gestiona y administra un bar. Algunas características clave:
 
 3. **Pendientes:**  
    - Completar las verificaciones de campos para mayor robustez.
+   - Extender el pedido con un posible detalle de pedido.
    - Agreagar mas notificaciones emergentes. Ya sea cuando se agrega un nuevo registro, se modifica o se le realiza la baja logica
 
 ---
