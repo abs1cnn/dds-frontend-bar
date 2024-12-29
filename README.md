@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-holaholahol
-=======
 **PROYECTO: GESTIÓN DE PEDIDOS BAR  
 **Contribuciones**: Abigail Canaan y Lanfranco Puchetta  
 **Cátedra**: Desarrollo de Aplicaciones  
@@ -76,4 +73,3 @@ La aplicación gestiona y administra un bar. Algunas características clave:
 
 ---
 
->>>>>>> 266fa9e3d173abf763b87e30c1fbb179dd2d0588
