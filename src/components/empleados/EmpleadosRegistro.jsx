@@ -21,12 +21,10 @@ export default function EmpleadosRegistro({
     }
     if (!Item.Apellido) {
       newErrors.Apellido = "El Apellido es obligatorio.";
-    } else if (Item.Nombre.length > 30) {
+    } else if (Item.Apellido.length > 30) {
       newErrors.Apellido = "El Apellido debe tener menos de 30 caracteres.";
     }
 
-    if (!Item.Nombre) newErrors.Nombre = "El nombre es obligatorio.";
-    if (!Item.Apellido) newErrors.Apellido = "El apellido es obligatorio.";
     if (!Item.FechaAlta) newErrors.FechaAlta = "La fecha de alta es obligatoria.";
     if (Item.Activo === null || Item.Activo === undefined) newErrors.Activo = "El estado activo es obligatorio.";
 
@@ -35,10 +33,12 @@ export default function EmpleadosRegistro({
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Previene la recarga automática del formulario
+
     if (validate()) {
-      Grabar(Item);
+      await Grabar(Item); // Llama a la función Grabar
+      window.location.reload(); // Recarga la página después de grabar
     }
   };
 
@@ -59,7 +59,7 @@ export default function EmpleadosRegistro({
                 value={Item?.Nombre}
                 autoFocus
                 className={`form-control ${errors.Nombre ? 'is-invalid' : ''}`}
-                onChange={(e) => setItem({...Item, Nombre: e.target.value})}
+                onChange={(e) => setItem({ ...Item, Nombre: e.target.value })}
               />
               {errors.Nombre && <div className="invalid-feedback">{errors.Nombre}</div>}
             </div>
@@ -78,7 +78,7 @@ export default function EmpleadosRegistro({
                 name="Apellido"
                 value={Item.Apellido}
                 className={`form-control ${errors.Apellido ? 'is-invalid' : ''}`}
-                onChange={(e) => setItem({...Item, Apellido: e.target.value})}
+                onChange={(e) => setItem({ ...Item, Apellido: e.target.value })}
               />
               {errors.Apellido && <div className="invalid-feedback">{errors.Apellido}</div>}
             </div>
@@ -97,7 +97,7 @@ export default function EmpleadosRegistro({
                 name="FechaAlta"
                 className={`form-control ${errors.FechaAlta ? 'is-invalid' : ''}`}
                 value={Item?.FechaAlta}
-                onChange={(e) => setItem({...Item, FechaAlta: e.target.value})}
+                onChange={(e) => setItem({ ...Item, FechaAlta: e.target.value })}
               />
               {errors.FechaAlta && <div className="invalid-feedback">{errors.FechaAlta}</div>}
             </div>
@@ -115,7 +115,7 @@ export default function EmpleadosRegistro({
                 name="Activo"
                 className={`form-control ${errors.Activo ? 'is-invalid' : ''}`}
                 value={Item?.Activo}
-                onChange={(e) => setItem({...Item, Activo: e.target.value})}
+                onChange={(e) => setItem({ ...Item, Activo: e.target.value })}
               >
                 <option value={null}></option>
                 <option value={false}>NO</option>

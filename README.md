@@ -26,13 +26,15 @@ La aplicación gestiona y administra un bar. Algunas características clave:
   - Ejemplo: La entidad "Pedido" está vinculada al empleado que tomó la orden.  
 - **Consultas:**  
   - Se realizan mediante queries.
-- **Validaciones:**  
+- **Validaciones o Reglas de negocio:**  
   - Control de campos vacíos, fechas (los pedidos a futuro no son válidos), y cantidades (no menores a 0).  
   - Longitud de los campos de texto según corresponda.  
   - Empleados inactivos no pueden ser modificados.  
   - Si un empleado está inactivo, no puede ser asignado a un pedido.  
   - No se realiza borrado físico en la base de datos, solo baja lógica.
   - Los empleados atienden distintas mesas a la vez
+  - Una mesa no puede poseer un encargado que no esta activo.
+  - Un pedido puede ser registrado a encargo de un empleado inactivo, por si se paso el pedido.
 
 ---
 

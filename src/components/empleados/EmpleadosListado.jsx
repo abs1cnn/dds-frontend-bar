@@ -12,6 +12,7 @@ export default function EmpleadosListado({
       <table className="table table-hover table-sm table-bordered table-striped">
         <thead>
           <tr>
+            <th className="text-center">ID</th>
             <th className="text-center">Nombre</th>
             <th className="text-center">Apellido</th>
             <th className="text-center">Fecha de Alta</th>
@@ -23,6 +24,7 @@ export default function EmpleadosListado({
           {Items &&
             Items.map((Item) => (
               <tr key={Item.IdEmpleado}>
+                <td className="text-center">{Item.IdEmpleado}</td>
                 <td className="text-center">{Item.Nombre}</td>
                 <td className="text-center">{Item.Apellido}</td>
                 <td className="text-center">

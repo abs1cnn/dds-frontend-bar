@@ -7,6 +7,7 @@ export default function PedidosListado({ Items, Consultar, Modificar, Buscar }) 
       <table className="table table-hover table-sm table-bordered table-striped">
         <thead>
           <tr>
+            <th className="text-center">ID Pedido</th>
             <th className="text-center">Fecha Alta</th>
             <th className="text-center">Precio</th>
             <th className="text-center">Empleado</th>
@@ -17,6 +18,7 @@ export default function PedidosListado({ Items, Consultar, Modificar, Buscar }) 
           {Items &&
             Items.map((pedido) => (
               <tr key={pedido.IdPedido}>
+                <td className="text-center">{pedido.IdPedido}</td>
                 <td className="text-center">
                   {moment(pedido.FechaAlta).format("MM/DD/YYYY")}
                 </td>
